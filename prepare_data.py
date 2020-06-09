@@ -1,8 +1,9 @@
-# La idea de este archivo es ejecutar previo a la ejecución de main.py, en este se
-# extraen todas las caracteristicas de cada imagen y se guardan en un array en las carpetas de
-# training y testing
+# La idea de este archivo es ejecutar previo a la ejecución de los notebooks,
+# en este se vana extraer todas las características de las imagenes de training y testing
+# y se van a guardan en array para hacerlas accesible de forma expedita desde el .ipynb de
+# cada una de las estrategias.
 
-from modules.feature_extraction import features_from_img
+from modules.feature_extraction import img_features
 import numpy as np
 import os
 
@@ -27,9 +28,9 @@ for cdir in sorted(cdirs):
     print('    Loading dir: ', cdir)
     files = [file for file in os.listdir(os.path.join(training_path, cdir)) if EXTENSION in file]
     for file in sorted(files):
-        features_dict = features_from_img(os.path.join(training_path, cdir, file))
+        features_dict = img_features(os.path.join(training_path, cdir, file))
         training_features.append(list(features_dict.values()))
-        training_labels.append(file[:4])
+        training_labels.append(file)
         if flabels is None:
             flabels = list(features_dict.keys())
 
@@ -39,9 +40,9 @@ for cdir in sorted(cdirs):
     print('    Loading dir: ', cdir)
     files = [file for file in os.listdir(os.path.join(testing_path, cdir)) if EXTENSION in file]
     for file in sorted(files):
-        features_dict = features_from_img(os.path.join(testing_path, cdir, file))
+        features_dict = img_features(os.path.join(testing_path, cdir, file))
         testing_features.append(list(features_dict.values()))
-        testing_labels.append(file[:4])
+        testing_labels.append(file)
 
 # guardamos los archivos
 np.save(os.path.join(training_path, 'dataset_features.npy'), np.array(training_features))
