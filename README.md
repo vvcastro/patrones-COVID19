@@ -33,8 +33,3 @@ Se debe disenar dos clasificadores:
 * I) este clasificador considera la clasificacion de cada patch de forma individual. Es decir, la matriz de confusion del testing tendra 420 muestras por clase.
 
 * II) este clasificador es el que le interesa a los laboratorios, ya que considera los grupos de 10 patches por radiografias como una unidad y serviria para determinar si un paciente tiene COVID19, Neumonia o esta sano. Es decir, en este clasificador la matriz de confusion de testing tendra 42 muestras por clase. Una forma simple de llevar a cabo el clasificador II es haciendo mayoria de votos en los grupos de 10 patches segun lo que determine el clasificador I.
-
-ES NECESARIO:
-
-- Se deben probar y analizar al menos 5 estrategias distintas.
-- Informe con la extraccion de caracteristicas, la seleccion/transformacion y clasificacion. Se debera reportar tanto en el training como en el testing el accuracy y la matriz de confusion.
